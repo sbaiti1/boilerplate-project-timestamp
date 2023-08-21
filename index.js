@@ -22,8 +22,8 @@ app.get("/", function (req, res) {
 // date to UNIX
 app.get("/api/:date?", function (req, res) {
   
-  
-  let date = req.params.date ? new Date(req.params.date) : new Date();
+  let arg = isNaN(req.params.date) ? req.params.date : parseInt(req.params.date)
+  let date = req.params.date ? new Date(arg) : new Date();
   let unix =  date.getTime()
   let utc = date.toUTCString()
   
