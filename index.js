@@ -22,10 +22,17 @@ app.get("/", function (req, res) {
 // date to UNIX
 app.get("/api/:date?", function (req, res) {
   
+  
   let date = req.params.date ? new Date(req.params.date) : new Date();
   let unix =  date.getTime()
   let utc = date.toUTCString()
-  res.json({unix , utc})
+  
+  if(utc === 'Invalid Date'){
+    res.json({error : utc})
+  }else{
+    res.json({unix , utc})
+
+  }
 
   
 });
